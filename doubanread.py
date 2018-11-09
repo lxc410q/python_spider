@@ -8,9 +8,9 @@ info_lists = []
 page=[0,20,40]
 def get_info(url):
     res = requests.get(url, headers)
-    ids = re.findall('<a href="https://www.douban.com/people/(\d+)/" property="v:reviewer" class="name">(.*?)</a>',res.text,re.S)
+    ids = re.findall('<a href="https://www.douban.com/people/\d+/" property="v:reviewer" class="name">(.*?)</a>',res.text,re.S)
     contents=re.findall('<div class="short-content"><p class="spoiler-tip">（.*？）</p>（.*？）&nbsp;(<a href="javascript:;" id="toggle-（\d+）-copy" class="unfold" title="展开">展开</a>)</div>',res.text,re.S)
-    replys=re.findall('<a href="https://book.douban.com/review/(\d+)/#comments" class="reply">(.*?)</a>',res.text,re.S)
+    replys=re.findall('<a href="https://book.douban.com/review/\d+/#comments" class="reply">(.*?)</a>',res.text,re.S)
     for id,content,reply in zip(ids,contents,replys):
         info = {
             'id':id,
